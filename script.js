@@ -12,22 +12,17 @@ var confirmUpperCase
 var confirmNumeric
 var confirmSpecialCharacters
 
-
-
 function generatePassword() {
   var confirmLength = (prompt("How many characters would you like your password to contain?"));
-
-  if(confirmLength <= 7 || confirmLength >= 129) {
+  
+    while(confirmLength <= 7 || confirmLength >= 129) {
       alert("Password length must be between 8-128 characters. Try again!");
       var confirmLength = (prompt("How many characters would you like your password to contain?"));
       } 
       console.log(confirmLength)
-  
-    if(confirmLength = lowerCase|| upperCase) {
-      alert("Please select a number.");
-      var confirmLength = (prompt("How many characters would you like your password to contain?"));
-      } 
-      console.log(confirmLength)
+
+      // I couldn't figure out how to make it so it won't accept letters.
+
 
     var confirmLowerCase = confirm("Would you like to use Lower Case letters?");
       console.log(confirmLowerCase)
@@ -37,8 +32,21 @@ function generatePassword() {
       console.log(confirmNumeric)
     var confirmSpecialCharacters = confirm("Would you like to use Special Characters?");
       console.log(confirmSpecialCharacters)
+
+       while(confirmLowerCase === false && confirmUpperCase === false && confirmNumeric === false && confirmSpecialCharacters === false) {
+        alert("You must choose at least one parameter");
+        alert ("You must select at least one type of character");
+        var confirmLowerCase = confirm("Would you like to use Lower Case letters?");
+        console.log(confirmLowerCase)
+        var confirmUpperCase = confirm("Would you like to use Upper Case letters?");
+        console.log(confirmUpperCase)
+        var confirmNumeric = confirm("Would you like to use Numbers?");
+        console.log(confirmNumeric)
+        var confirmSpecialCharacters = confirm("Would you like to use Special Characters?");
+        console.log(confirmSpecialCharacters)
+      }
     
-    }
+  }
 
 
 // Write password to the #password input
