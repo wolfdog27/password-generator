@@ -12,61 +12,85 @@ var confirmUpperCase
 var confirmNumeric
 var confirmSpecialCharacters
 
+
+
+
+
+
+// generate a password from user input
 function generatePassword() {
+  // turn input string into numbers
   var confirmLength = parseInt(prompt("How many characters would you like your password to contain?"));
-  
-    while(confirmLength <= 7 || confirmLength >= 129) {
-      alert("Password length must be between 8-128 characters. Try again!");
+  // make sure passwrod is between 8 and 129 and is NOT a letter or symbol
+    while(confirmLength <= 7 || confirmLength >= 129 || (isNaN(confirmLength))) {
+      alert("Password length must be a number between 8-128 characters. Try again!");
       var confirmLength = (prompt("How many characters would you like your password to contain?"));
       } 
-      console.log(confirmLength)
-        
+      
 
-// I can't figure out how to use only numbers and no letters... nothing is working rightn now
-
+// Ask what type of characters they would like to use
+  var choices=[]
     var confirmLowerCase = confirm("Would you like to use Lower Case letters?");
-      console.log(confirmLowerCase)
+      if (confirmLowerCase) {
+        choices = choices.concat(lowerCase) // choices += lowerCase
+      }
     var confirmUpperCase = confirm("Would you like to use Upper Case letters?");
-      console.log(confirmUpperCase)
+      if (confirmUpperCase) {
+        choices = choices.concat(upperCase)
+      }
     var confirmNumeric = confirm("Would you like to use Numbers?");
-      console.log(confirmNumeric)
+      if (confirmNumeric) {
+        choices = choices.concat(numeric)
+      }
     var confirmSpecialCharacters = confirm("Would you like to use Special Characters?");
-      console.log(confirmSpecialCharacters)
+      if (confirmSpecialCharacters) {
+        choices = choices.concat(specialCharacters)
+      }
+
+// make sure they use at least one of the requirements
 
        while(confirmLowerCase === false && confirmUpperCase === false && confirmNumeric === false && confirmSpecialCharacters === false) {
-        alert("You must choose at least one parameter");
         alert ("You must select at least one type of character");
         var confirmLowerCase = confirm("Would you like to use Lower Case letters?");
-        console.log(confirmLowerCase)
+        if (confirmLowerCase) {
+          choices = choices.concat(lowerCase)
+        }
         var confirmUpperCase = confirm("Would you like to use Upper Case letters?");
-        console.log(confirmUpperCase)
+        if (confirmUpperCase) {
+          choices = choices.concat(upperCase)
+        }
         var confirmNumeric = confirm("Would you like to use Numbers?");
-        console.log(confirmNumeric)
+        if (confirmNumeric) {
+          choices = choices.concat(numeric)
+        }
         var confirmSpecialCharacters = confirm("Would you like to use Special Characters?");
-        console.log(confirmSpecialCharacters)
+        if (confirmSpecialCharacters) {
+          choices = choices.concat(specialCharacters)
+        }
       }
+
+  
+      // creat for loop to take in input and make password
+      
+      var createdPassword = []
+      for (var i=0; i<confirmLength;i++) {
+        var index = Math.floor(Math.random() * choices.length )
+
+        createdPassword.push(choices[index])
+      }
+  
+// this took out too many commas
+      return createdPassword.join("")
     
   }
+
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  // var password = []
-  // if (confirmLowerCase) {
-  //   password = 
-  // }
-
-  // // / if(uppercase){
-  //   for(var i=0;i<upperCase.length;i++){
-  //    (console.log(upperCase[i])
-  //   }
     
-    
-
-
   passwordText.value = password;
 
 }
